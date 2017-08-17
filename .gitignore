@@ -10,6 +10,12 @@
 # Precompiled Headers
 *.gch
 *.pch
+*.pdb
+*.ilk
+*.idb
+*.db
+*.suo
+*.opendb
 
 # Compiled Dynamic libraries
 *.so
@@ -30,3 +36,6 @@
 *.exe
 *.out
 *.app
+
+build-QtGStreamerHUDApp_5.4.1-Desktop_Qt_5_9_1_MSVC2015_32bit-Debug
+build-QtGStreamerHUDApp_5.4.1-Desktop_Qt_5_9_1_MSVC2015_32bit-Release

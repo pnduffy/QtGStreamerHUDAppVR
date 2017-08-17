@@ -1,0 +1,8 @@
+cp -r ../../qml .
+cp C:\qt-gstreamer-1.2.0\build\src\qml\quick2\ReleaseXP\QtGStreamerQuick2.dll C:\Users\papa\QtGStreamerHUDApp\build-QtGStreamerHUDApp-Desktop_Qt_5_3_MSVC2010_OpenGL_32bit-ReleaseXP\release\qml\quick2\QtGStreamer\QtGStreamerQuick2.dll
+cp C:\qt-gstreamer-1.2.0\build\src\QGlib\ReleaseXP\Qt5GLib-2.0.dll C:\Users\papa\QtGStreamerHUDApp\build-QtGStreamerHUDApp-Desktop_Qt_5_3_MSVC2010_OpenGL_32bit-ReleaseXP\release\Qt5GLib-2.0.dll
+cp C:\qt-gstreamer-1.2.0\build\src\QGst\ReleaseXP\Qt5GStreamer-1.0.dll C:\Users\papa\QtGStreamerHUDApp\build-QtGStreamerHUDApp-Desktop_Qt_5_3_MSVC2010_OpenGL_32bit-ReleaseXP\release\Qt5GStreamer-1.0.dll
+cp C:\qt-gstreamer-1.2.0\build\src\QGst\ReleaseXP\Qt5GStreamerQuick-1.0.dll C:\Users\papa\QtGStreamerHUDApp\build-QtGStreamerHUDApp-Desktop_Qt_5_3_MSVC2010_OpenGL_32bit-ReleaseXP\release\Qt5GStreamerQuick-1.0.dll
+cp C:\qt-gstreamer-1.2.0\build\src\QGst\ReleaseXP\Qt5GStreamerUi-1.0.dll C:\Users\papa\QtGStreamerHUDApp\build-QtGStreamerHUDApp-Desktop_Qt_5_3_MSVC2010_OpenGL_32bit-ReleaseXP\release\Qt5GStreamerUi-1.0.dll
+cp C:\qt-gstreamer-1.2.0\build\src\QGst\ReleaseXP\Qt5GStreamerUtils-1.0.dll C:\Users\papa\QtGStreamerHUDApp\build-QtGStreamerHUDApp-Desktop_Qt_5_3_MSVC2010_OpenGL_32bit-ReleaseXP\release\Qt5GStreamerUtils-1.0.dll
+cp C:\qt-gstreamer-1.2.0\build\elements\gstqtvideosink\ReleaseXP\gstqt5videosink.dll  C:\Users\papa\QtGStreamerHUDApp\build-QtGStreamerHUDApp-Desktop_Qt_5_3_MSVC2010_OpenGL_32bit-ReleaseXP\release\gstqt5videosink.dll 
