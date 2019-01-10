@@ -152,6 +152,20 @@ Sony_Capture_Error Sony_Remote_Camera_Implementation::Launch_Liveview()
 	return SC_NO_ERROR;
 }
 
+Sony_Capture_Error Sony_Remote_Camera_Implementation::TakePicture()
+{
+	std::vector<string> params;
+	string json_request(Build_JSON_Command("actTakePicture", params));// (("{\"method\": \"actTakePicture\",\"params\" : [],\"id\" : 1,\"version\" : \"1.0\"}\r\n");
+	if (auto err = Send_Options_Command(json_request)) return err;
+	using boost::property_tree::ptree;
+	ptree pt;
+	string c = text_content.str();
+	read_json(text_content, pt);
+	auto v = pt.get_child("result").begin();
+	picture_url = v->second.data();
+	return SC_NO_ERROR;
+}
+
 void Sony_Remote_Camera_Implementation::Read_Liveview_Continuously(){
 	while (true){
 		this_thread::interruption_point();

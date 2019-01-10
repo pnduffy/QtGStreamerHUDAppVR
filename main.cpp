@@ -19,25 +19,6 @@ void* update_node(void* surface,  void* node, qreal x, qreal y, qreal w, qreal h
 
 int main(int argc, char *argv[])
 {
-    InitQGst();
-
-    // Register plugin static to avoid having to put pluing in gstreamer directory tree
-    gboolean success = gst_plugin_register_static (GST_VERSION_MAJOR,
-                                GST_VERSION_MINOR ,
-                                "qt5videosink",
-                                "A video sink that can draw on any Qt surface",
-                                &plugin_init,
-                                "1.2.0",
-                                "LGPL",
-                                "libgstqt5videosink.so",
-                                "QtGStreamer",
-                                "http://gstreamer.freedesktop.org");
-
-    if (!success)
-    {
-        qCritical() << "Could not register qt5videosink plugin with GStreamer!";
-    }
-
     int retCode = InitHUDApp(argc,argv, false);
     ExitHUDApp();
     return retCode;

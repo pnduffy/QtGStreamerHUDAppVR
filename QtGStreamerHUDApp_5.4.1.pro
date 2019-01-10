@@ -48,9 +48,9 @@ RESOURCES += qml.qrc
 
 INCLUDEPATH += c:/gstreamer/1.0/x86/include/gstreamer-1.0
 INCLUDEPATH += c:/gstreamer/1.0/x86/lib/gstreamer-1.0/include
-INCLUDEPATH += C:/gstreamer/1.0/x86/lib/gstreamer-1.0/include/gst
-INCLUDEPATH += c:/qt-gstreamer-1.2.0/src
-INCLUDEPATH += c:/qt-gstreamer-1.2.0/elements/gstqtvideosink
+INCLUDEPATH += c:/gstreamer/1.0/x86/lib/gstreamer-1.0/include/gst
+INCLUDEPATH += c:/qt-gstreamer-1.2.0-win32/src
+INCLUDEPATH += c:/qt-gstreamer-1.2.0-win32/elements/gstqtvideosink
 INCLUDEPATH += "C:/Program Files/boost/boost_1_61_0"
 INCLUDEPATH += $$PWD/libs/mavlink/include/mavlink/v1.0/ardupilotmega
 INCLUDEPATH += $$PWD/apps/mavlinkgen/msinttypes
@@ -59,8 +59,8 @@ INCLUDEPATH += $$PWD/comm
 INCLUDEPATH += $$PWD/QsLog
 INCLUDEPATH += $$PWD/ui
 INCLUDEPATH += $$PWD
-INCLUDEPATH += C:/gtk3/include/glib-2.0
-INCLUDEPATH += C:/gtk3/lib/glib-2.0/include
+INCLUDEPATH += c:/gtk3/include/glib-2.0
+INCLUDEPATH += c:/gtk3/lib/glib-2.0/include
 INCLUDEPATH += $$PWD/sony_remote_camera_cpp_drivers-dev
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -152,30 +152,30 @@ OTHER_FILES += \
     qml/resources/components/primaryFlightDisplay/play.svg \
     qml/resources/components/primaryFlightDisplay/stop.svg
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/release/ -lQt5GStreamer-1.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamer-1.0
+win32:CONFIG(release, debug|release): LIBS += -Lc://qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/release/ -lQt5GStreamer-1.0
+else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamer-1.0
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/release/ -lQt5GStreamerUi-1.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamerUi-1.0
+win32:CONFIG(release, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/release/ -lQt5GStreamerUi-1.0
+else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamerUi-1.0
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/release/ -lQt5GStreamerQuick-1.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamerQuick-1.0
+win32:CONFIG(release, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/release/ -lQt5GStreamerQuick-1.0
+else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamerQuick-1.0
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/release/ -lQt5GStreamerUtils-1.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamerUtils-1.0
+win32:CONFIG(release, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/release/ -lQt5GStreamerUtils-1.0
+else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/debug/ -lQt5GStreamerUtils-1.0
 
-DEPENDPATH += $$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGst/Debug
+DEPENDPATH += c:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGst/Debug
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGlib/release/ -lQt5GLib-2.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGlib/debug/ -lQt5GLib-2.0
+win32:CONFIG(release, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGlib/release/ -lQt5GLib-2.0
+else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGlib/debug/ -lQt5GLib-2.0
 
-DEPENDPATH += $$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/src/QGlib/Debug
+DEPENDPATH += c:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/src/QGlib/Debug
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/elements/gstqtvideosink/Release -lgstqt5videosink
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/elements/gstqtvideosink/Debug/ -lgstqt5videosink
+win32:CONFIG(release, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/elements/gstqtvideosink/Release -lgstqt5videosink
+else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/elements/gstqtvideosink/Debug/ -lgstqt5videosink
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/./../qt-gstreamer-1.2.0/build-qt5.9.1/elements/gstqtvideosink/Release -lgstqt5videosink
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../qt-gstreamer-1.2.0/build-qt5.9.1/elements/gstqtvideosink/Debug/ -lgstqt5videosink
+win32:CONFIG(release, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/elements/gstqtvideosink/Release -lgstqt5videosink
+else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/build-qt5.9.1/elements/gstqtvideosink/Debug/ -lgstqt5videosink
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/sony_remote_camera_cpp_drivers-dev/Release -lsony_capture
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/sony_remote_camera_cpp_drivers-dev/Debug -lsony_capture
@@ -215,4 +215,6 @@ DISTFILES += \
     qml/resources/components/primaryFlightDisplay/zooming_in.png \
     qml/resources/components/primaryFlightDisplay/zooming_out.png \
     qml/resources/components/primaryFlightDisplay/swap.png \
-    qml/resources/components/primaryFlightDisplay/full-screen.png
+    qml/resources/components/primaryFlightDisplay/full-screen.png \
+    qml/resources/components/primaryFlightDisplay/take_picture.png \
+    qml/resources/components/primaryFlightDisplay/taking_picture.png

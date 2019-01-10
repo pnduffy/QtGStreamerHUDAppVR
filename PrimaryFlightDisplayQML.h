@@ -75,6 +75,7 @@ signals:
     void zoomingOutChanged();
     void cameraIpAddressChanged();
     void swapImagesChanged();
+    void takePictureChanged();
 
 public:
     Q_PROPERTY(bool fullScreenMode READ isFullScreenMode WRITE setFullScreenMode NOTIFY fullScreenModeChanged)
@@ -88,6 +89,7 @@ public:
     Q_PROPERTY(bool uasConnected READ isUasConnected WRITE setUasConnected NOTIFY uasConnectedChanged)
     Q_PROPERTY(bool setHome READ isSetHome WRITE resetHome NOTIFY setHomeChanged)
     Q_PROPERTY(bool splitImage READ isSplitImage WRITE setSplitImage NOTIFY splitImageChanged)
+    Q_PROPERTY(bool takePicture READ isTakePicture WRITE setTakePicture NOTIFY takePictureChanged)
 
     void setFullScreenMode(bool value);
     bool isFullScreenMode() const;
@@ -112,6 +114,9 @@ public:
 
     void setZoomingOut(bool value);
     bool isZoomingOut() const;
+
+    void setTakePicture(bool value);
+    bool isTakePicture() const;
 
     void setVideoEnabled(bool value);
     bool isVideoEnabled() const { return m_videoEnabled; }
@@ -187,6 +192,7 @@ private:
     bool m_zoomingOut;
     bool m_swapImages;
     bool m_close;
+    bool m_takePicture;
 };
 
 #endif // PRIMARYFLIGHTDISPLAYQML_H

@@ -10,6 +10,8 @@
 #include "LinkManager1.h"
 #include <QGst/Init>
 #include <QMessageBox>
+#include <gst/gst.h>
+#include "gstqtvideosinkplugin.h"
 
 HUDApplication *theApp = NULL;
 QMainWindow *theMainWindow = NULL;
@@ -27,6 +29,34 @@ int InitHUDApp(int argc, char *argv[], bool disableClose)
     QFont font = theApp->font();
     font.setPixelSize(12);
     theApp->setFont(font);
+
+    QString gstreamerLibPath = QCoreApplication::applicationDirPath() + "/lib/gstreamer-1.0";
+    qputenv("GST_PLUGIN_PATH",gstreamerLibPath.toLocal8Bit());
+
+    QString path = qgetenv("PATH");
+    QString gstreamerBinPath = QCoreApplication::applicationDirPath() + "/bin";
+    QString newPath = gstreamerBinPath + ";" + path;
+    qputenv("PATH",newPath.toLocal8Bit());
+
+    InitQGst();
+
+    // Register plugin static to avoid having to put pluing in gstreamer directory tree
+    gboolean success = gst_plugin_register_static (GST_VERSION_MAJOR,
+                                GST_VERSION_MINOR ,
+                                "qt5videosink",
+                                "A video sink that can draw on any Qt surface",
+                                &plugin_init,
+                                "1.2.0",
+                                "LGPL",
+                                "libgstqt5videosink.so",
+                                "QtGStreamer",
+                                "http://gstreamer.freedesktop.org");
+
+    if (!success)
+    {
+        qCritical() << "Could not register qt5videosink plugin with GStreamer!";
+    }
+
 	theMainWindow = new MainWindow(NULL, disableClose ? Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint : 0);
 
 	thePfd = new PrimaryFlightDisplayQML();

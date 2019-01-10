@@ -87,10 +87,12 @@ public:
         return m_stopped;
     }
 
-    void setPlaying(bool play)
+    void setPlaying(bool)
     {
-        play ? m_playing = this->play() : m_playing = false;
-        emit playingChanged(m_playing);
+        if (!m_playTimer.isActive())
+        {
+            m_playTimer.start(200);
+        }
     }
 
     void setPaused(bool pause)
@@ -106,7 +108,7 @@ public:
         if (!m_stopTimer.isActive())
         {
             sendEOS();
-            m_stopTimer.start(1000);
+            m_stopTimer.start(100);
         }
     }
 
@@ -164,6 +166,7 @@ public Q_SLOTS:
     void stop();
 	void toggleFullScreen();
     void onStopTimer();
+    void onPlayTimer();
 
     void initialize();
     void setPipelineString(const QString & pipelineString)
@@ -189,6 +192,7 @@ private:
     void sendEOS();
 
     QTimer m_stopTimer;
+    QTimer m_playTimer;
 
     QGst::PipelinePtr m_pipeline;
     QGst::ElementPtr m_videoSink;

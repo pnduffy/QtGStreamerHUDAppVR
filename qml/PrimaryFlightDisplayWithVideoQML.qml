@@ -630,7 +630,7 @@ Rectangle {
         width: parent.width*2/3
         anchors.left: parent.left
 
-        height: (106*root.mm)
+        height: (116*root.mm)
         z:3
 
         property real rowHeight: (9*root.mm)
@@ -687,6 +687,12 @@ Rectangle {
             {
                 height: popup.rowHeight
                 text: "Font Size"
+            }
+
+            Text
+            {
+                height: popup.rowHeight
+                text: "Stream Type"
             }
 
             Text
@@ -818,6 +824,44 @@ Rectangle {
                 anchors.left: parent.left
                 z:3
 
+                Button
+                {
+                    id: buttonH264
+                    text: "H264"
+
+                    onClicked:
+                    {
+                        pipelineString.currentIndex = 0
+                        player.stopped = true
+                        player.playing = true
+                    }
+                }
+
+                Button
+                {
+                    id: buttonMJPEG
+                    text: "MJPEG"
+                    anchors
+                    {
+                        left: buttonH264.right; leftMargin: 10
+                    }
+
+                    onClicked:
+                    {
+                        pipelineString.currentIndex = 1
+                        player.stopped = true
+                        player.playing = true
+                    }
+                }
+            }
+
+            RowLayout
+            {
+                width: parent.width
+                height: popup.rowHeight
+                anchors.left: parent.left
+                z:3
+
                 ComboBox
                 {
                     id: pipelineString
@@ -873,7 +917,7 @@ Rectangle {
                         {
                             // Set defaults
                             Settings.set("pipelineString0", "udpsrc port=9000 buffer-size=60000 ! application/x-rtp,encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! queue ! avdec_h264");
-                            Settings.set("pipelineString1", "tcpclientsrc host=localhost port=9000 ! gdpdepay ! rtph264depay ! h264parse ! queue ! avdec_h264");
+                            Settings.set("pipelineString1", "udpsrc port=9000 ! application/x-rtp,media=(string)video,clock-rate=(int)90000,encoding-name=(string)JPEG,payload=(int)26 ! rtpjpegdepay ! jpegdec");
                             Settings.set("pipelineString2", "videotestsrc ! queue");
                         }
 
@@ -902,7 +946,7 @@ Rectangle {
                     {
                         // Delete it
                         stringIndex = pipelineString.find(pipelineString.currentText)
-                        if (stringIndex >= 0)
+                        if (stringIndex >= 3) // Can't delete first 3 defaults
                         {
                             // Erase first
                             for (var i=0; i<model.count; i++)
@@ -1001,7 +1045,7 @@ Rectangle {
                 z:3
                 id: checkSwapColorMatrix1
                 height: popup.rowHeight
-                text: "H264 Color Matrix"
+                text: "Invert Color Matrix"
                 onCheckedChanged:
                 {
                     root.swapColorMatrix1 = checked
@@ -1212,7 +1256,7 @@ Rectangle {
         color: "lightgrey"
         width: parent.width*2/3
 
-        height: (70*root.mm)
+        height: (80*root.mm)
         z:3
 
         property real rowHeight: (9*root.mm)
@@ -1262,6 +1306,12 @@ Rectangle {
             Text
             {
                 height: popup2.rowHeight
+                text: "Stream Type"
+            }
+
+            Text
+            {
+                height: popup2.rowHeight
                 text: "Pipeline"
             }
         }
@@ -1306,6 +1356,7 @@ Rectangle {
                     Settings.set("contrast2", contrastSlider2.value)
                 }
             }
+
             Slider
             {
                 id: hueSlider2
@@ -1321,6 +1372,7 @@ Rectangle {
                     Settings.set("hue2", hueSlider2.value)
                 }
             }
+
             Slider
             {
                 id: saturationSlider2
@@ -1334,6 +1386,44 @@ Rectangle {
                 onValueChanged:
                 {
                     Settings.set("saturation2", saturationSlider2.value)
+                }
+            }
+
+            RowLayout
+            {
+                width: parent.width
+                height: popup.rowHeight
+                anchors.left: parent.left
+                z:3
+
+                Button
+                {
+                    id: buttonH264_2
+                    text: "H264"
+
+                    onClicked:
+                    {
+                        pipelineString2.currentIndex = 0
+                        player2.stopped = true
+                        player2.playing = true
+                    }
+                }
+
+                Button
+                {
+                    id: buttonMJPEG_2
+                    text: "MJPEG"
+                    anchors
+                    {
+                        left: buttonH264_2.right; leftMargin: 10
+                    }
+
+                    onClicked:
+                    {
+                        pipelineString2.currentIndex = 1
+                        player2.stopped = true
+                        player2.playing = true
+                    }
                 }
             }
 
@@ -1400,7 +1490,7 @@ Rectangle {
                         {
                             // Set defaults
                             Settings.set("pipelineString20", "udpsrc port=9001 buffer-size=60000 ! application/x-rtp,encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! queue ! avdec_h264");
-                            Settings.set("pipelineString21", "tcpclientsrc host=localhost port=9001 ! gdpdepay ! rtph264depay ! h264parse ! queue ! avdec_h264");
+                            Settings.set("pipelineString21", "udpsrc port=9001 ! application/x-rtp,media=(string)video,clock-rate=(int)90000,encoding-name=(string)JPEG,payload=(int)26 ! rtpjpegdepay ! jpegdec");
                             Settings.set("pipelineString22", "videotestsrc ! queue");
                         }
 
@@ -1429,7 +1519,7 @@ Rectangle {
                     {
                         // Delete it
                         stringIndex = pipelineString2.find(pipelineString2.currentText)
-                        if (stringIndex >= 0)
+                        if (stringIndex >= 3) // Can't delete first 3 defaults
                         {
                             // Erase first
                             for (var i=0; i<model.count; i++)
@@ -1471,7 +1561,7 @@ Rectangle {
             CheckBox {
                 z:3
                 id: checkSwapColorMatrix2
-                text: "H264 Color Matrix"
+                text: "Invert Color Matrix"
                 onCheckedChanged:
                 {
                     root.swapColorMatrix2 = checked
@@ -2139,9 +2229,43 @@ Rectangle {
 
         Button
         {
-            id: buttonZoomIn
+            id: buttonTakePicture
             height: parent.height
             anchors.left: buttonRecord.right
+            anchors.top: parent.top
+            anchors.leftMargin: 10
+
+            style: ButtonStyle
+            {
+                background: Rectangle
+                {
+                    implicitWidth: topRow.height
+                    implicitHeight: topRow.height
+                    color: "transparent"
+
+                    Image
+                    {
+                        anchors.horizontalCenter: parent.horizontalCenter;
+                        anchors.verticalCenter: parent.verticalCenter;
+                        source: buttonTakePicture.pressed ? "./resources/components/primaryFlightDisplay/taking_picture.png" : "./resources/components/primaryFlightDisplay/take_picture.png"
+                        width: topRow.buttonHeight
+                        height: topRow.buttonHeight
+                        sourceSize.height: topRow.buttonHeight
+                        sourceSize.width: topRow.buttonHeight
+                    }
+                }
+            }
+            onPressedChanged:
+            {
+                container.takePicture = buttonTakePicture.pressed;
+            }
+        }
+
+        Button
+        {
+            id: buttonZoomIn
+            height: parent.height
+            anchors.left: buttonTakePicture.right
             anchors.top: parent.top
             anchors.leftMargin: 10
 

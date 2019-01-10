@@ -18,6 +18,7 @@ namespace src {
 		virtual Sony_Capture_Error Set_Shoot_Mode(Camera_State::Shoot_Mode mode);
 		virtual Sony_Capture_Error Set_Recording(bool start);
 		virtual Sony_Capture_Error Zoom(bool in, bool start);
+		virtual Sony_Capture_Error TakePicture();
 
 	private:
 		void Retrieve_Decription_File();
@@ -57,6 +58,7 @@ namespace src {
 		std::stringstream text_content;
 		std::stringstream events_text_content;
 		std::string liveview_url;
+		std::string picture_url;
 		std::string camera_service_url;
 		boost::thread liveview_thread;
 		boost::thread event_listener_thread;

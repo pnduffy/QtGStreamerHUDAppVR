@@ -34,6 +34,7 @@ namespace src {
 		virtual Sony_Capture_Error Set_Shoot_Mode(Camera_State::Shoot_Mode mode) = 0;
 		virtual Sony_Capture_Error Set_Recording(bool start) = 0;
 		virtual Sony_Capture_Error Zoom(bool in, bool start) = 0;
+		virtual Sony_Capture_Error TakePicture() = 0;
 	};
 
 	DLL Sony_Remote_Camera_Interface* GetSonyRemoteCamera(const char* my_own_ip, const char *camera_service_url=NULL, const char *liveview_url=NULL);

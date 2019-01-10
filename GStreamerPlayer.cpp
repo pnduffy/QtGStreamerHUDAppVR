@@ -25,6 +25,7 @@
 #include <QGst/Event>
 #include <QtQuick/QQuickView>
 #include <QDialog>
+#include <QApplication>
 
 GStreamerPlayer::GStreamerPlayer(QObject *parent)
     : QObject(parent)
@@ -38,6 +39,9 @@ GStreamerPlayer::GStreamerPlayer(QObject *parent)
 
     m_stopTimer.setSingleShot(true);
     connect(&m_stopTimer, SIGNAL(timeout()), this, SLOT(onStopTimer()));
+
+    m_playTimer.setSingleShot(true);
+    connect(&m_playTimer, SIGNAL(timeout()), this, SLOT(onPlayTimer()));
 
 }
 
@@ -234,3 +238,17 @@ void GStreamerPlayer::onStopTimer()
     this->stop();
 }
 
+void GStreamerPlayer::onPlayTimer()
+{
+    m_playTimer.stop();
+    m_playing = true;
+
+    emit playingChanged(m_playing);
+
+    m_paused = false;
+    emit pausedChanged(m_paused);
+    m_stopped = false;
+    emit stoppedChanged(m_stopped);
+
+    this->play();
+}
