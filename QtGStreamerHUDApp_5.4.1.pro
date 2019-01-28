@@ -62,6 +62,7 @@ INCLUDEPATH += $$PWD
 INCLUDEPATH += c:/gtk3/include/glib-2.0
 INCLUDEPATH += c:/gtk3/lib/glib-2.0/include
 INCLUDEPATH += $$PWD/sony_remote_camera_cpp_drivers-dev
+INCLUDEPATH += C:/opencv-4.0.0/build/install/include
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -180,7 +181,11 @@ else:win32:CONFIG(debug, debug|release): LIBS += -Lc:/qt-gstreamer-1.2.0-win32/b
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/sony_remote_camera_cpp_drivers-dev/Release -lsony_capture
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/sony_remote_camera_cpp_drivers-dev/Debug -lsony_capture
 
-LIBS += -LC:/gstreamer/1.0/x86/lib -lgstreamer-1.0
+win32:CONFIG(release, debug|release): LIBS += -LC:\opencv-4.0.0\build\install\x86\vc14\lib -lopencv_core400 -lopencv_imgproc400 -lopencv_dnn400
+else:win32:CONFIG(debug, debug|release): LIBS += -LC:\opencv-4.0.0\build\install\x86\vc14\lib -lopencv_core400d -lopencv_imgproc400d -lopencv_dnn400d
+
+
+LIBS += -LC:/gstreamer/1.0/x86/lib -lgstreamer-1.0 -lOle32
 LIBS += -L"C:\Program Files\boost\boost_1_61_0\stage\lib"
 
 DISTFILES += \

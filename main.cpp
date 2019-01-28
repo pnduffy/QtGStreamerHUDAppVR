@@ -7,6 +7,7 @@
 #include <gst/gst.h>
 #include <QThread>
 #include <gstqtquick2videosink.h>
+#include <objbase.h>
 
 // Since Qt QML scene rendering is on a rendering thread and not the UI thread, use a 'direct' call instead of the glib 'signal/slot'
 // The UI thread blocks during the 'update-node' call, so it's safe to make this direct call on the rendering thread
@@ -19,6 +20,8 @@ void* update_node(void* surface,  void* node, qreal x, qreal y, qreal w, qreal h
 
 int main(int argc, char *argv[])
 {
+    CoInitializeEx(NULL,COINIT_MULTITHREADED);
+
     int retCode = InitHUDApp(argc,argv, false);
     ExitHUDApp();
     return retCode;

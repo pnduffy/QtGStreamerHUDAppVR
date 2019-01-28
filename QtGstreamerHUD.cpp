@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <gst/gst.h>
 #include "gstqtvideosinkplugin.h"
+#include <QMessageBox>
 
 HUDApplication *theApp = NULL;
 QMainWindow *theMainWindow = NULL;
@@ -26,6 +27,7 @@ int InitHUDApp(int argc, char *argv[], bool disableClose)
 {
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     theApp = new HUDApplication(argc, argv);
+
     QFont font = theApp->font();
     font.setPixelSize(12);
     theApp->setFont(font);

@@ -25,17 +25,36 @@ This file is part of the APM_PLANNER project
 
 #include <QApplication>
 #include <QMainWindow>
+#include <opencv2/dnn.hpp>
+#include <delegates/basedelegate.h>
+
 
 class HUDApplication: public QApplication
 {
 	Q_OBJECT
 
 public:
-    HUDApplication(int &argc, char **argv):QApplication(argc,argv){}
+    HUDApplication(int &argc, char **argv);
 	void sendCloseSignal() { emit close(); }
+    virtual bool event(QEvent *event);
 
 signals:
 	bool close();
+
+private:
+    std::vector<cv::Rect> postprocess(cv::Mat& frame, const std::vector<cv::Mat>& outs, cv::dnn::Net& net, float confThreshold, QList<int>& classIdList);
+    void drawPred(float conf, int classId, int left, int top, int right, int bottom, cv::Mat& frame);
+
+    cv::dnn::Net objectDetectorNet;
+    QMap<GstVideoSink*, BufferFormat> sinkFormatMap;
+
+    QList<int> outdoorList;
+    QList<int> indoorList;
+
+    bool isOutdoors;
+
+    static QStringList classNames;
+
 };
 
 class MainWindow : public QMainWindow {
