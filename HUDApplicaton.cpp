@@ -37,6 +37,10 @@ bool HUDApplication::event(QEvent *event)
             BaseDelegate::BufferEvent2 *bufEvent = dynamic_cast<BaseDelegate::BufferEvent2*>(event);
             Q_ASSERT(bufEvent);
 
+            // TODO: test
+            //bufEvent->eventWait.wakeAll();
+            //return true;
+
             if (sinkFormatMap.contains(bufEvent->sink))
             {
                 GstMapInfo info;
@@ -52,6 +56,11 @@ bool HUDApplication::event(QEvent *event)
                 else if (fmtName=="BGR")
                 {
                     frame = Mat(Size(fmt.frameSize().width(), fmt.frameSize().height()), CV_8UC3, (char*)info.data);
+                }
+                else if (fmtName=="v308")
+                {
+                    Mat pic308 = Mat(Size(fmt.frameSize().width(), fmt.frameSize().height()), CV_8UC3, (char*)info.data);
+                    cv::cvtColor(pic308, frame, cv::COLOR_YUV2BGR);
                 }
 
                 Mat resized;
@@ -71,6 +80,12 @@ bool HUDApplication::event(QEvent *event)
                     Mat picI420;
                     cv::cvtColor(frame, picI420, COLOR_BGR2YUV_I420);
                     memcpy(info.data,picI420.data,picI420.total());
+                }
+                else if (fmtName=="v308")
+                {
+                    Mat pic308;
+                    cv::cvtColor(frame, pic308, COLOR_BGR2YUV);
+                    memcpy(info.data,pic308.data,pic308.total()*3);
                 }
 
                 gst_buffer_unmap(bufEvent->buffer, &info);
